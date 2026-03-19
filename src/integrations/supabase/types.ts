@@ -583,7 +583,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      credit_driver_wallet: {
+        Args: { p_amount: number; p_driver_id: string; p_trip_id: string }
+        Returns: undefined
+      }
+      current_driver_id: { Args: never; Returns: string }
+      current_rider_id: { Args: never; Returns: string }
+      is_admin: { Args: never; Returns: boolean }
+      nearby_drivers: {
+        Args: {
+          lat: number
+          lng: number
+          radius_km?: number
+          v_type?: Database["public"]["Enums"]["vehicle_type"]
+        }
+        Returns: {
+          distance_km: number
+          driver_id: string
+        }[]
+      }
     }
     Enums: {
       doc_status: "pending" | "approved" | "rejected"
