@@ -161,6 +161,6 @@
   }
 
   .brutal-input:focus {
-    box-shadow: 3px 3px 0px 0px hsl(var(--primary));
+    box-shadow: 1.5px 1.5px 0px 0px hsl(var(--primary));
   }
 }

@@ -36,6 +36,7 @@ const App = () => (
             <Route path="/settings" element={<ProtectedRoute><PlaceholderPage title="Settings" /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </DataModeProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
