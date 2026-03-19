@@ -1,6 +1,8 @@
-import { Bell, LogOut, User } from 'lucide-react';
+import { Bell, LogOut, User, Database, TestTube } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useDataMode } from '@/contexts/DataModeContext';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { useNavigate } from 'react-router-dom';
 
 interface AdminNavbarProps {
@@ -9,6 +11,7 @@ interface AdminNavbarProps {
 
 export const AdminNavbar = ({ sidebarCollapsed }: AdminNavbarProps) => {
   const { user, signOut } = useAuth();
+  const { isRealData, toggleDataMode } = useDataMode();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -27,6 +30,20 @@ export const AdminNavbar = ({ sidebarCollapsed }: AdminNavbarProps) => {
       </h2>
 
       <div className="flex items-center gap-3">
+        {/* Data Mode Toggle */}
+        <div className="brutal-border rounded-sm h-10 px-3 flex items-center gap-2 bg-secondary">
+          <TestTube className="h-4 w-4 text-muted-foreground" strokeWidth={2.5} />
+          <span className="text-xs font-heading font-bold text-muted-foreground hidden sm:block">
+            {isRealData ? 'Live' : 'Demo'}
+          </span>
+          <Switch
+            checked={isRealData}
+            onCheckedChange={toggleDataMode}
+            className="scale-75"
+          />
+          <Database className="h-4 w-4 text-primary" strokeWidth={2.5} />
+        </div>
+
         {/* Notifications */}
         <button className="relative h-10 w-10 brutal-border rounded-sm flex items-center justify-center hover:bg-secondary transition-colors brutal-shadow-sm brutal-btn">
           <Bell className="h-5 w-5 text-foreground" strokeWidth={2.5} />
